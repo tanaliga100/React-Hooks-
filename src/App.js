@@ -2,36 +2,36 @@ import logo from "./logo.svg";
 import { useEffect, useReducer, useRef, useState } from "react";
 import "./App.css";
 
-function App() {
-  const [data, setData] = useState([]);
-  const [count, setCount] = useState(0)
 
-  useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((res) => res.json())
-      .then((results) => {
-        console.log("api was called");
-        setData(results[0].name);
-      });
-  }, [count]);
+  const initialState = {
+    name: null,
+    age: 0,
+  }
+
+function App() {
+  const [data, setData] = useState(initialState)
+  const inputRef = useRef(null)
   
-    // const listOfUsers = data.map(list => {
-    //   <ul key={list.id}>
-    //     <li>{list.name}</li>
-    //     <p>{list.company}</p>
-    //     <h2>{list.address}</h2>
-    //   </ul>
-    // })
+  const clickHandler = (e) => {
+    e.preventDefault()
+    setData({
+      name: inputRef.current.value,
+    })
+    inputRef.current.value = ""
+    inputRef.current.focus()
+  }
 
   return (
     <div className="App">
-      <h1 className="title">HELLO useEffect-Hook</h1>
+      <h1 className="title">HELLO useRef-Hook</h1>
       <section>
-        {data}
+      <form action=""  onSubmit={clickHandler}>
+      <input ref={inputRef} type="text" placeholder="Ex..." />
+      </form>
       </section>
+      <h1>{data.name}</h1>
       <section>
-        {count}
-        <button onClick={()=> setCount(count+1)}>click</button>
+      <button onClick={clickHandler}>Clear</button>
       </section>
     </div>
   );
