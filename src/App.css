@@ -1,7 +1,16 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
+.title{
+  background-color: #18194e;
+  color: rgb(219, 219, 219);
+  padding: 1rem;
 
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
